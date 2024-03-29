@@ -32,7 +32,7 @@ const NavBar = () => {
             <ul className="absolute bg-gray-700 shadow-md rounded-b-lg mt-[10px] ">
               <Link to="/register"><li className='p-2 px-6  hover:bg-gray-900'>Register</li></Link> 
               <Link to="/login"><li className='p-2 px-6  hover:bg-gray-900'>Login</li></Link> 
-              <li className='p-2 px-6  hover:bg-gray-900'>Hello</li>
+              <Link to="dashboard"><li className='p-2 px-6  hover:bg-gray-900'>DashBoard</li></Link>
               <li className='p-2 px-6  hover:bg-gray-900'>Hello</li>
             </ul>
           )}

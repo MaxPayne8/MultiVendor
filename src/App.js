@@ -12,6 +12,8 @@ import Checkout from './Pages/Checkout';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
 import ForgotPassword from './Pages/ForgotPassword';
+import DashBoard from './Pages/DashBoard';
+import Orders from './Pages/Orders';
 
 
 function App() {
@@ -43,8 +45,16 @@ export const appRouter = createBrowserRouter([
         element: < Checkout/>,
       },
       {
+        path: "/orders",
+        element: < Orders/>,
+      },
+      {
         path: "/register",
         element: < Register/>,
+      },
+      {
+        path: "/dashboard",
+        element: < DashBoard/>,
       },
       {
         path: "/login",
