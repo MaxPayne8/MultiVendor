@@ -21,7 +21,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className='flex justify-between items-center px-10 py-2 bg-gray-900 text-white'>
+    <div className='flex justify-between items-center px-10 py-2 bg-gray-900 text-white w-full  '>
       <Link to="/"><h1 className='text-xl'>MultiVendor Ecommerce</h1></Link>
       <ul className='flex gap-4'>
         <Link to="/"><li className='hover:scale-110 duration-150'>Home</li></Link>

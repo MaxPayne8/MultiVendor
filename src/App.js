@@ -14,6 +14,10 @@ import Login from './Pages/Login';
 import ForgotPassword from './Pages/ForgotPassword';
 import DashBoard from './Pages/DashBoard';
 import Orders from './Pages/Orders';
+import OrderSuccessfull from './Pages/OrderSuccessfull';
+import OrderFailed from './Pages/OrderFailed';
+import Address from './Pages/Address';
+import AddAddress from './Pages/AddAddress';
 
 
 function App() {
@@ -51,6 +55,22 @@ export const appRouter = createBrowserRouter([
       {
         path: "/register",
         element: < Register/>,
+      },
+      {
+        path: "/all-address",
+        element: < Address/>,
+      },
+      {
+        path: "/add-address",
+        element: < AddAddress/>,
+      },
+      {
+        path: "/order-placed",
+        element: < OrderSuccessfull/>,
+      },
+      {
+        path: "/order-failed",
+        element: < OrderFailed/>,
       },
       {
         path: "/dashboard",

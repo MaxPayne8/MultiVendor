@@ -7,7 +7,7 @@ import { MdCopyright } from "react-icons/md";
 const Footer = () => {
   return (
  
-    <div className='flex justify-between p-5'>
+    <div className='flex justify-between p-5 py-10'>
         <div className='flex items-center gap-1 font-semibold text-gray-500'>
         <h1>MultiVendor Ecom</h1> <span className='inline-block'> <MdCopyright/></span><h1>2024 Company,Inc</h1>
         </div>

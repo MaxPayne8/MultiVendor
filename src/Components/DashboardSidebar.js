@@ -9,7 +9,7 @@ const DashboardSidebar = () => {
         <Link to="/orders"><li  className='bg-gray-200 p-2 rounded-lg hover:scale-110 duration-150 cursor-pointer' >Orders</li></Link>    
             <li  className='bg-gray-200 p-2 rounded-lg hover:scale-110 duration-150 cursor-pointer' >Wislist</li>
             <li  className='bg-gray-200 p-2 rounded-lg hover:scale-110 duration-150 cursor-pointer'>Profile</li>
-            <li  className='bg-gray-200 p-2 rounded-lg hover:scale-110 duration-150 cursor-pointer' >Adresses</li>
+            <Link to="/all-address"> <li  className='bg-gray-200 p-2 rounded-lg hover:scale-110 duration-150 cursor-pointer' >Adresses</li></Link>  
             <li  className='bg-gray-200 p-2 rounded-lg hover:bg-red-600 hover:text-white cursor-pointer'>Logout</li>
         </ul>
     </div>
