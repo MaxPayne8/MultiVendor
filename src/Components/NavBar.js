@@ -4,12 +4,29 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 const NavBar = () => {
   const [acc, setAcc] = useState(false);
+  const[sellerAcc , setSellerAcc] = useState(false);
   const dropdownRef = useRef(null);
+  const dropdownRef1 = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setAcc(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef1.current && !dropdownRef1.current.contains(event.target)) {
+        setSellerAcc(false);
       }
     };
 
@@ -32,7 +49,18 @@ const NavBar = () => {
             <ul className="absolute bg-gray-700 shadow-md rounded-b-lg mt-[10px] ">
               <Link to="/register"><li className='p-2 px-6  hover:bg-gray-900'>Register</li></Link> 
               <Link to="/login"><li className='p-2 px-6  hover:bg-gray-900'>Login</li></Link> 
-              <Link to="dashboard"><li className='p-2 px-6  hover:bg-gray-900'>DashBoard</li></Link>
+              <Link to="/dashboard"><li className='p-2 px-6  hover:bg-gray-900'>DashBoard</li></Link>
+              <li className='p-2 px-6  hover:bg-gray-900'>Hello</li>
+            </ul>
+          )}
+        </li>
+        <li onClick={() => setSellerAcc(!sellerAcc)} className="relative hover:cursor-pointer" ref={dropdownRef1} >
+          Seller Account { !sellerAcc ? <FaAngleDown className='inline-block'/> : <FaAngleUp className='inline-block'/>}
+          {sellerAcc && (
+            <ul className="absolute bg-gray-700 shadow-md rounded-b-lg mt-[10px] ">
+              <Link to="/seller-register"><li className='p-2 px-6  hover:bg-gray-900'>Register</li></Link> 
+              <Link to="/seller-login"><li className='p-2 px-6  hover:bg-gray-900'>Login</li></Link> 
+              <Link to="/dashboard-seller"><li className='p-2 px-6  hover:bg-gray-900'>DashBoard</li></Link>
               <li className='p-2 px-6  hover:bg-gray-900'>Hello</li>
             </ul>
           )}

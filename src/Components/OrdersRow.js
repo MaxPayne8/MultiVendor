@@ -1,6 +1,7 @@
 import React from 'react'
 
-const OrdersRow = ({orderNum,prodImg,prodName,price,status,action,type="dashboard"}) => {
+const OrdersRow = ({orderNum,prodImg,prodName,price,status,action,type="dashboard",type1="customer"}) => {
+
   return (
     <tr>
                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
@@ -40,6 +41,15 @@ const OrdersRow = ({orderNum,prodImg,prodName,price,status,action,type="dashboar
                                         {action}
                                     </span>
                                 </span>
+                            </td>}
+                            {type=="dashboard" && type1=="seller" && <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                               {action.map(e=> <span class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+                                    <span aria-hidden="true" class="absolute inset-0 bg-green-200 rounded-full opacity-50">
+                                    </span>
+                                    <span class="relative">
+                                        {e}
+                                    </span>
+                                </span>) }
                             </td>}
                         </tr>
   )

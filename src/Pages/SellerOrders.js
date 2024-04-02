@@ -1,16 +1,14 @@
 import React from 'react'
+import DashboardSellerSidebar from '../Components/DashboardSellerSidebar'
 import OrdersRow from '../Components/OrdersRow'
-import DashboardSidebar from '../Components/DashboardSidebar'
 
-const Orders = () => {
-    const data=[{"orderNum":1 ,"prodImg":"https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg","prodName":"One Plus 12R", "price":20000,"status":"Completed","action":"active" , "type1":"customer"}]
+const SellerOrders = () => {
+  const data=[{"orderNum":1 ,"prodImg":"https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg","prodName":"One Plus 12R", "price":20000,"status":"Published","action":["view","edit","delete"],"type1":"seller" }]
+  
   return (
-
-    <div className='flex justify-between'>
-          <DashboardSidebar/>
-   
-
-   <div class="container max-w-3xl px-4 mx-auto sm:px-8">
+    <div className='flex p-10'>
+      <DashboardSellerSidebar/>
+      <div class="container max-w-3xl px-4 mx-auto sm:px-8">
        <div class="py-8">
            <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
                <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
@@ -71,11 +69,7 @@ const Orders = () => {
        </div>
    </div>
     </div>
-
-  
-
-
   )
 }
 
-export default Orders
+export default SellerOrders

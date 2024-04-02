@@ -18,6 +18,10 @@ import OrderSuccessfull from './Pages/OrderSuccessfull';
 import OrderFailed from './Pages/OrderFailed';
 import Address from './Pages/Address';
 import AddAddress from './Pages/AddAddress';
+import SellerRegister from './Pages/SellerRegister';
+import SellerLogin from './Pages/SellerLogin';
+import DashboardSeller from './Pages/DashboardSeller';
+import SellerOrders from './Pages/SellerOrders';
 
 
 function App() {
@@ -77,8 +81,28 @@ export const appRouter = createBrowserRouter([
         element: < DashBoard/>,
       },
       {
+        path: "/dashboard-seller",
+        element: < DashboardSeller/>,
+      },
+      {
         path: "/login",
         element: < Login/>,
+      },
+      {
+        path: "/seller-login",
+        element: < SellerLogin/>,
+      },
+      {
+        path: "/seller-register",
+        element: < SellerRegister/>,
+      },
+      {
+        path: "/seller-orders",
+        element: < SellerOrders/>,
+      },
+      {
+        path: "/seller-add-order",
+        element: < SellerRegister/>,
       },
       {
         path: "/forgotpassword",
