@@ -37,7 +37,7 @@ const SellerLogin = () => {
                       Password
                     </label>
                     <div className="text-sm">
-                      <Link to="/forgotpassword" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                      <Link to="/seller-change-password" className="font-semibold text-indigo-600 hover:text-indigo-500">
                         Forgot password?
                       </Link>
                     </div>
@@ -66,7 +66,7 @@ const SellerLogin = () => {
     
               <p className="mt-10 text-center text-sm text-gray-500">
                 Not a member?{' '}
-                <Link to="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                <Link to="/seller-register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                   Register Here
                 </Link>
               </p>

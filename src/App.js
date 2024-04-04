@@ -21,7 +21,14 @@ import AddAddress from './Pages/AddAddress';
 import SellerRegister from './Pages/SellerRegister';
 import SellerLogin from './Pages/SellerLogin';
 import DashboardSeller from './Pages/DashboardSeller';
+
+import Customers from './Pages/Customers';
+import SellerProducts from './Pages/SellerProducts';
+import SellerAddProduct from './Pages/SellerAddProduct';
 import SellerOrders from './Pages/SellerOrders';
+import Reports from './Pages/Reports';
+import SellerProfile from './Pages/SellerProfile';
+import SellerChangePassword from './Pages/SellerChangePassword';
 
 
 function App() {
@@ -97,12 +104,12 @@ export const appRouter = createBrowserRouter([
         element: < SellerRegister/>,
       },
       {
-        path: "/seller-orders",
-        element: < SellerOrders/>,
+        path: "/seller-products",
+        element: < SellerProducts/>,
       },
       {
-        path: "/seller-add-order",
-        element: < SellerRegister/>,
+        path: "/seller-add-product",
+        element: < SellerAddProduct/>,
       },
       {
         path: "/forgotpassword",
@@ -120,6 +127,31 @@ export const appRouter = createBrowserRouter([
       {
         path: "/allproducts",
         element: < AllProducts/>,
+      }
+      ,
+      {
+        path: "/customers",
+        element: < Customers/>,
+      }
+      ,
+      {
+        path: "/reports",
+        element: < Reports/>,
+      }
+      ,
+      {
+        path: "/seller-orders",
+        element: < SellerOrders/>,
+      }
+      ,
+      {
+        path: "/seller-profile",
+        element: < SellerProfile/>,
+      }
+      ,
+      {
+        path: "/seller-change-password",
+        element: < SellerChangePassword/>,
       }
       
      

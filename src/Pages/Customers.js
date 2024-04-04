@@ -2,8 +2,8 @@ import React from 'react'
 import DashboardSellerSidebar from '../Components/DashboardSellerSidebar'
 import OrdersRow from '../Components/OrdersRow'
 
-const SellerOrders = () => {
-    const data=[{"orderNum":1 ,"prodImg":"https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg","prodName":"One Plus 12R", "price":20000,"status":"Completed","action":["Change" ,"Status","Completed"] ,"type1":"customer" , "seller_orders":true}]
+const Customers = () => {
+    const data=[{"orderNum":1 ,"prodImg":false ,"prodName":"One Plus 12R", "price":20000,"status":"Completed","action":"Remove from list" ,"type1":"customer"}]
     return (
   
       <div className='flex justify-between p-10'>
@@ -21,13 +21,13 @@ const SellerOrders = () => {
                                      #
                                  </th>
                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                     Product
+                                     Name
                                  </th>
                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                     Price
+                                     Email
                                  </th>
                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                     Status
+                                     Mobile
                                  </th>
                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                                      Action
@@ -35,7 +35,7 @@ const SellerOrders = () => {
                              </tr>
                          </thead>
                          <tbody>
-                            {data.map(e=><OrdersRow orderNum={e.orderNum} prodImg={e.prodImg} prodName={e.prodName} price={e.price} status={e.status} action={e.action} type1={e.type1} seller_orders={e.seller_orders}/>)}
+                            {data.map(e=><OrdersRow orderNum={e.orderNum} prodImg={e.prodImg} prodName={e.prodName} price={e.price} status={e.status} action={e.action} type1={e.type1}/>)}
                          </tbody>
                      </table>
                      <div class="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
@@ -73,4 +73,4 @@ const SellerOrders = () => {
       </div>)
 }
 
-export default SellerOrders
+export default Customers

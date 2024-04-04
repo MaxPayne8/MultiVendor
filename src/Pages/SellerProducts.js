@@ -1,17 +1,19 @@
 import React from 'react'
+import DashboardSellerSidebar from '../Components/DashboardSellerSidebar'
 import OrdersRow from '../Components/OrdersRow'
-import DashboardSidebar from '../Components/DashboardSidebar'
+import { Link } from 'react-router-dom'
 
-const Orders = () => {
-    const data=[{"orderNum":1 ,"prodImg":"https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg","prodName":"One Plus 12R", "price":20000,"status":"Completed","action":"active" ,"type1":"customer"}]
+const SellerProducts = () => {
+  const data=[{"orderNum":1 ,"prodImg":"https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg","prodName":"One Plus 12R", "price":20000,"status":"Published","action": ["view","edit","delete"],"type1":"seller" }]
+  
   return (
-
-    <div className='flex justify-between p-10'>
-          <DashboardSidebar/>
-   
-
-   <div class="container max-w-3xl px-4 mx-auto sm:px-8">
-       <div class="py-8">
+    <div className='flex p-10'>
+      <DashboardSellerSidebar/>
+      <div class="container max-w-3xl px-4 mx-auto sm:px-8">
+        <div>
+          <div className='flex justify-end'> <Link to ="/seller-add-product"><button className='bg-green-500 text-white font-semibold p-1 rounded-lg'>Add Product</button></Link></div>
+         
+        <div class="py-8">
            <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
                <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
                    <table class="min-w-full leading-normal">
@@ -29,7 +31,7 @@ const Orders = () => {
                                <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                                    Status
                                </th>
-                               <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                               <th scope="col" class="px-16 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200 ">
                                    Action
                                </th>
                            </tr>
@@ -69,13 +71,11 @@ const Orders = () => {
                </div>
            </div>
        </div>
+        </div>
+    
    </div>
     </div>
-
-  
-
-
   )
 }
 
-export default Orders
+export default SellerProducts
