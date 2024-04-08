@@ -1,17 +1,40 @@
-import React from 'react'
-import { FaAngleRight, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { FaAngleRight, FaArrowLeft, FaArrowRight, FaCartPlus, FaDemocrat, FaHeart, FaShoppingBag } from 'react-icons/fa';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import Card from '../Components/Card';
 import { FaRupeeSign } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa";
+import { SERVER_ADDRESS } from '../Constants/Constants';
+import axios from 'axios';
+import {Link, useParams} from 'react-router-dom'
 
 const ProductDetails = () => {
-    const location = useLocation()
-    console.log(location  );
-    const {category, title , price} = location.state;
+
+  const {product_name , product_id} = useParams();
+  console.log(product_name , product_id)
+  const [prodDet , setProdDet] = useState({});
+  const[prodImages, setProdImages] = useState([])
+  const[prodTags, setProdTags] = useState([])
+
+
+  const fetchProdDet = async(prod_id)=>{
+      try {
+          const response = await axios.get(SERVER_ADDRESS+'api/product/'+prod_id);
+          console.log(response.data);
+          setProdDet(response.data)
+          setProdImages(response.data.product_images)
+          setProdTags(response.data.tag_list)
+         } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+        
+  }
+  useEffect(()=>{fetchProdDet(product_id)},[product_id])
+
+  console.log(prodDet,prodDet.title);
+
 
     const PrevArrow = (props) => {
         const { onClick } = props;
@@ -34,7 +57,7 @@ const ProductDetails = () => {
       const PrevArrow1 = (props) => {
         const { onClick } = props;
         return (
-          <div className="text-xl text-gray-600 -left-10 z-10 absolute top-[40%] hover:scale-110 duration-150 hover:cursor-pointer hover:text-gray-900" onClick={onClick}>
+          <div className="text-xl text-white  z-10 absolute top-[40%] hover:scale-125 duration-150 hover:cursor-pointer hover:text-gray-900" onClick={onClick}>
             <FaAngleLeft />
           </div>
         );
@@ -43,7 +66,7 @@ const ProductDetails = () => {
       const NextArrow1 = (props) => {
         const { onClick } = props;
         return (
-          <div className="text-xl text-gray-600 -right-10 absolute z-10 top-[40%] hover:scale-110 duration-150 hover:cursor-pointer hover:text-gray-900 " onClick={onClick}>
+          <div className="text-xl text-white right-0 absolute z-10 top-[40%] hover:scale-125 duration-150 hover:cursor-pointer hover:text-gray-900 " onClick={onClick}>
             <FaAngleRight />
           </div>
         );
@@ -55,11 +78,11 @@ const ProductDetails = () => {
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 10000,
       nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
+    prevArrow: <PrevArrow />,
 
-    //    cssEase: "linear"
+     
  
 }
     var settings1 = {
@@ -71,7 +94,8 @@ const ProductDetails = () => {
         autoplay: true,
       autoplaySpeed: 5000,
       nextArrow: <NextArrow1 />,
-    prevArrow: <PrevArrow1 />
+    prevArrow: <PrevArrow1 />,
+     
 
     //    cssEase: "linear"
  
@@ -82,22 +106,27 @@ const ProductDetails = () => {
 //   console.log(title , price , category);
     return (
         <div>
-            <div className='flex justify-between px-10'>
-                <div className='w-[25%]  mx-10'>
-                <Slider {...settings1} className='px-10'   >
-                <div><Card type="product"/></div>
-                <Card type="product"/>
-                <Card type="product"/>
+            <div className='flex flex-col items-center gap-8 md:flex-row justify-between  p-10'>
+                <div className='w-[80%] md:w-[25%]  border-2 border-black'>
+                <Slider {...settings1} className=''>
+               {prodImages?.map((pImg)=><img src={pImg.image} className=' h-56' alt="prod-img"/>)}
                 </Slider>
                 </div>
-    <div className=' flex flex-col justify-start w-[65%] px-10 bg-slate-300 '>
-            <h1 className='text-left font-semibold text-3xl px-2 py-1'> {title}</h1>
-            <h1  className='text-left font-semibold px-2 py-1 text-xl'><FaRupeeSign className='inline-block text-green-500' /> {price}</h1>
-            <h1  className='text-left font-semibold px-2 py-1 truncate'>Category : {category}</h1>
-            <h1  className='text-left font-semibold px-2 py-1 inline-block'>Description : Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+               {prodDet.title? <div className='flex justify-start flex-col items-start gap-2 px-4 bg-gray-200'><h1 className='font-semibold text-xl'>{prodDet?.title}</h1><h1>{prodDet?.price}</h1><h1>{prodDet?.category.title}</h1><h1 className='text-left'>{prodDet?.detail}</h1> <div className='flex gap-2'>
+                <div className='flex items-center rounded-lg gap-1 bg-blue-400 p-1'><button>Demo</button><FaDemocrat /></div>
+                 <div className='flex items-center rounded-lg gap-1 bg-yellow-300 p-1'><button>Add to Cart</button><FaCartPlus /></div>
+                 <div className='flex items-center rounded-lg gap-1 bg-green-400 p-1'><button>Buy Now</button><FaShoppingBag /></div>
+                 <div className='flex items-center rounded-lg gap-1 bg-red-500 p-1'><button>Wishlist</button><FaHeart /></div>
+                </div>
+                <div className='flex gap-3 my-2'><h1>Tags: </h1><div className='flex gap-2'>{prodTags.map(tag=><Link to={`/product/${tag}/page/1`}><button className=' rounded-lg gap-1 bg-gray-800 text-sky-50 px-1'>{tag}</button></Link>)}</div></div>
+                
+                </div>:<div className='text-3xl'>Loading......</div>}
+              
+                
+               
+                
 
-</h1>
-    </div>
+    
     </div>
     <h1 className='text-center text-2xl font-semibold m-5'>Related products</h1>
     <Slider {...settings} className=' pl-10 w-[90%] mx-auto my-10' >

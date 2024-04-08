@@ -29,6 +29,7 @@ import SellerOrders from './Pages/SellerOrders';
 import Reports from './Pages/Reports';
 import SellerProfile from './Pages/SellerProfile';
 import SellerChangePassword from './Pages/SellerChangePassword';
+import ProductTag from './Pages/TagProducts';
 
 
 function App() {
@@ -52,7 +53,7 @@ export const appRouter = createBrowserRouter([
         element: <Home/>,
       },
       {
-        path: "/categories",
+        path: "/categories/:id",
         element: < Categories/>,
       },
       {
@@ -116,7 +117,7 @@ export const appRouter = createBrowserRouter([
         element: < ForgotPassword/>,
       },
       {
-        path: "/categories/:category_name/:category_id",
+        path: "/categories/:category_name/:category_id/page/:id",
         element: < ProductsCategory/>,
       },
       {
@@ -125,7 +126,12 @@ export const appRouter = createBrowserRouter([
       }
       ,
       {
-        path: "/allproducts",
+        path: "/product/:tag/page/:page_num",
+        element: < ProductTag/>,
+      }
+      ,
+      {
+        path: "/products/page/:id",
         element: < AllProducts/>,
       }
       ,

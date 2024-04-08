@@ -5,37 +5,38 @@ import { Link, useParams } from 'react-router-dom'
 import  axios  from 'axios'
 import { SERVER_ADDRESS } from '../Constants/Constants'
 
-const ProductsCategory = () => {
+const ProductTag = () => {
 
-    const {category_name , category_id,id} = useParams();
-    console.log(category_name,category_id,id)
-    const [ prodCat,setProdCat] = useState([]);
+    const {tag,page_num} = useParams();
+    const tagL = tag.toLowerCase()
+    console.log(tag,page_num)
+    const [ tagProd,setTagProd] = useState([]);
     const [count, setcount] = useState(0)
 
-    const fetchAllProd = async(page_num)=>{
+    const fetchAllProd = async(tag)=>{
         try {
-            const response = await axios.get(SERVER_ADDRESS+'api/products/?category='+category_id+"&page="+page_num);
+            const response = await axios.get(SERVER_ADDRESS+'api/product/'+tag+"/?page="+page_num); 
             console.log(response.data);
-            setProdCat(response.data.results)
-            setcount(Math.ceil(response.data.count/3))
+            setTagProd(response.data.results)
+            setcount(Math.ceil(response.data.count/2))
           } catch (error) {
             console.error('Error fetching data:', error);
           }
           
     }
-    useEffect(()=>{fetchAllProd(id)},[id])
-    console.log(prodCat);
+    useEffect(()=>{fetchAllProd(tag)},[page_num])
+    console.log(tagProd);
     
     return (
         <div className='p-10'>
             <div className='flex justify-between items-center px-8'>
-            <h1 className='text-left m-4 font-bold font-mono text-2xl'><span className='text-red-700'>{category_name}</span> Products</h1>
+            <h1 className='text-left m-4 font-bold font-mono text-2xl'>Products related to <span className='text-red-700'>{tag}</span></h1>
             
             
             </div>
             
             <div className='flex justify-around flex-wrap gap-6'>
-            {prodCat.map((prod)=><Card type="product" category={prod.category.title} title={prod.title} price={prod.price} prodId={prod.id} prodDesc={prod?.detail} />)}
+            {tagProd.map((prod)=><Card type="product" category={prod.category.title} title={prod.title} price={prod.price} prodId={prod.id} prodDesc={prod?.detail} />)}
             
             
             
@@ -49,7 +50,7 @@ const ProductsCategory = () => {
              </svg>
          </button>
          {[...Array(count).keys()].map((index) => (
-   <Link to={`/categories/${category_name}/${category_id}/page/${index+1}`}> <button key={index} type="button" class="w-full px-4 py-2 text-base text-gray-600 bg-white border hover:bg-gray-100" >
+   <Link to={`/product/${tag}/page/${index+1}`}> <button key={index} type="button" class="w-full px-4 py-2 text-base text-gray-600 bg-white border hover:bg-gray-100" >
       {index+1}
     </button> </Link>  ))}
        
@@ -67,4 +68,4 @@ const ProductsCategory = () => {
       )
 }
 
-export default ProductsCategory
+export default ProductTag

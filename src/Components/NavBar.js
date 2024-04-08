@@ -42,7 +42,7 @@ const NavBar = () => {
       <Link to="/"><h1 className='text-xl'>MultiVendor Ecommerce</h1></Link>
       <ul className='flex gap-4'>
         <Link to="/"><li className='hover:scale-110 duration-150'>Home</li></Link>
-        <Link to="/categories"><li>Categories</li></Link>
+        <Link to="/categories/1"><li>Categories</li></Link>
         <li onClick={() => setAcc(!acc)} className="relative hover:cursor-pointer" ref={dropdownRef}>
           My Account { !acc ? <FaAngleDown className='inline-block'/> : <FaAngleUp className='inline-block'/>}
           {acc && (
