@@ -17,21 +17,34 @@ const ProductDetails = () => {
   const [prodDet , setProdDet] = useState({});
   const[prodImages, setProdImages] = useState([])
   const[prodTags, setProdTags] = useState([])
-
+  const [relProd , setRelProd] = useState([])
 
   const fetchProdDet = async(prod_id)=>{
-      try {
-          const response = await axios.get(SERVER_ADDRESS+'api/product/'+prod_id);
-          console.log(response.data);
-          setProdDet(response.data)
+    try {
+        const response = await axios.get(SERVER_ADDRESS+'api/product/'+prod_id);
+        setProdDet(response.data)
           setProdImages(response.data.product_images)
           setProdTags(response.data.tag_list)
+        console.log(response.data);
+       } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+      
+}
+
+
+  const fetchProdRelated = async(prod_id)=>{
+      try {
+          const response = await axios.get(SERVER_ADDRESS+'api/related-products/'+prod_id);
+          console.log(response.data);
+          setRelProd(response.data)
+          
          } catch (error) {
           console.error('Error fetching data:', error);
         }
         
   }
-  useEffect(()=>{fetchProdDet(product_id)},[product_id])
+  useEffect(()=>{fetchProdDet(product_id);fetchProdRelated(product_id)},[product_id])
 
   console.log(prodDet,prodDet.title);
 
@@ -72,10 +85,10 @@ const ProductDetails = () => {
         );
       };
     var settings = {
-        dots: true,
+        // dots: true,
         infinite: true,
         speed: 2000,
-        slidesToShow: 4,
+        slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
       autoplaySpeed: 10000,
@@ -113,7 +126,7 @@ const ProductDetails = () => {
                 </Slider>
                 </div>
                {prodDet.title? <div className='flex justify-start flex-col items-start gap-2 px-4 bg-gray-200'><h1 className='font-semibold text-xl'>{prodDet?.title}</h1><h1>{prodDet?.price}</h1><h1>{prodDet?.category.title}</h1><h1 className='text-left'>{prodDet?.detail}</h1> <div className='flex gap-2'>
-                <div className='flex items-center rounded-lg gap-1 bg-blue-400 p-1'><button>Demo</button><FaDemocrat /></div>
+                 <Link to={prodDet.demo}><div className='flex items-center rounded-lg gap-1 bg-blue-400 p-1'><button>Demo</button><FaDemocrat /></div></Link>   
                  <div className='flex items-center rounded-lg gap-1 bg-yellow-300 p-1'><button>Add to Cart</button><FaCartPlus /></div>
                  <div className='flex items-center rounded-lg gap-1 bg-green-400 p-1'><button>Buy Now</button><FaShoppingBag /></div>
                  <div className='flex items-center rounded-lg gap-1 bg-red-500 p-1'><button>Wishlist</button><FaHeart /></div>
@@ -129,22 +142,10 @@ const ProductDetails = () => {
     
     </div>
     <h1 className='text-center text-2xl font-semibold m-5'>Related products</h1>
-    <Slider {...settings} className=' pl-10 w-[90%] mx-auto my-10' >
-                <div><Card type="product"/></div> 
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
-                <Card type="product"/>
+    <Slider {...settings} className='  w-[60%] h-72  mx-auto my-10' >
+                
+                {relProd.map(prod => <Card carousel={true} type="product" category={prod.category.title} title={prod.title} prodId={prod.id} price={prod.price}/>)} 
+                
     </Slider>
         </div>
                  
